@@ -208,7 +208,6 @@
         <a href="/Acceuil">Accueil</a>
         <a href="/Cours">Cours</a>
         <a href="/emplois">Emplois &amp; Stages</a>
-        <a href="/Bourse">Bourses</a>
         <a href="/ressources">Ressources</a>
         <a href="/communauté" class="active">Communauté</a>
       </nav>

@@ -544,7 +544,6 @@
         <a href="/Acceuil" class="active">Accueil</a>
         <a href="/Cours">Cours</a>
         <a href="/emplois">Emplois &amp; Stages</a>
-        <a href="/Bourses">Bourses</a>
         <a href="/ressources">Ressources</a>
         <a href="/communauté">Communauté</a>
       </nav>
@@ -600,9 +599,9 @@
         <span class="eyebrow">Plateforme béninoise</span>
         <h1>
           La plateforme tout-en-un pour les
-          <span class="accent-orange">étudiants</span>,
-          <span class="accent-blue">jeunes</span> du Bénin et
-          <span class="accent-violet">Non diplômé du supérieur</span>
+          <span>étudiants</span>,
+          <span>jeunes</span> du Bénin et
+          <span>Non diplômé du supérieur</span>
         </h1>
         <p class="lead">
           Cours, emplois, stages, bourses et bien plus. Tout ce qu'il te faut pour apprendre, évoluer et réussir, réuni au même endroit.
@@ -751,24 +750,22 @@
         <div>
           <h4>Plateforme</h4>
           <ul>
-            <li><a href="Cours.blade.php">Cours</a></li>
-            <li><a href="#">Emplois &amp; Stages</a></li>
-            <li><a href="#">Bourses</a></li>
+            <li><a href="/Cours">Cours</a></li>
+            <li><a href="/emplois">Emplois &amp; Stages</a></li>
           </ul>
         </div>
         <div>
           <h4>Ressources</h4>
           <ul>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Guides</a></li>
-            <li><a href="#">Communauté</a></li>
+            <li><a href="/ressources">Guides</a></li>
+            <li><a href="/communauté">Communauté</a></li>
           </ul>
         </div>
         <div>
           <h4>Compte</h4>
           <ul>
-            <li><a href="#">Se connecter</a></li>
-            <li><a href="#">S'inscrire</a></li>
+            <li><a href="/Connexion">Se connecter</a></li>
+            <li><a href="/Inscription">S'inscrire</a></li>
             <li><a href="#">Aide</a></li>
           </ul>
         </div>
