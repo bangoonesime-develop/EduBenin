@@ -132,7 +132,7 @@ class AdminController extends Controller
 
     public function editLivre(Livre $livre)
     {
-        return view('livres-edit', [
+        return view('admin.livres-edit', [
             'livre' => $livre,
         ]);
     }
@@ -475,5 +475,53 @@ class AdminController extends Controller
         $serie->delete();
 
         return back()->with('success', 'Série supprimée. Les vidéos qu\'elle contenait restent disponibles individuellement.');
+    }
+
+    // =========================================================
+    // ENVOI D'OPPORTUNITÉS PAR EMAIL (ciblé par domaine)
+    // Volontairement impossible d'envoyer à "tous les inscrits" :
+    // un domaine est toujours obligatoire, pour éviter le spam
+    // et garder les messages pertinents pour chaque destinataire.
+    // =========================================================
+
+    public function sendOpportunite(Request $request)
+    {
+        $request->validate([
+            'domaine' => 'required|string|max:255',
+            'objet'   => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        $domaineRecherche = trim($request->domaine);
+
+        $destinataires = User::whereNotNull('domaine')
+            ->where('domaine', '!=', '')
+            ->get()
+            ->filter(function ($utilisateur) use ($domaineRecherche) {
+                return stripos($utilisateur->domaine, $domaineRecherche) !== false
+                    || stripos($domaineRecherche, $utilisateur->domaine) !== false;
+            });
+
+        if ($destinataires->isEmpty()) {
+            return back()->with('error', "Aucun utilisateur trouvé pour le domaine \"{$domaineRecherche}\".")->withInput();
+        }
+
+        $envoyes = 0;
+
+        foreach ($destinataires as $utilisateur) {
+            try {
+                Mail::raw(
+                    "Bonjour {$utilisateur->prenom},\n\n" . $request->message . "\n\nÀ bientôt,\nL'équipe EduBénin",
+                    function ($mail) use ($utilisateur, $request) {
+                        $mail->to($utilisateur->email)->subject($request->objet);
+                    }
+                );
+                $envoyes++;
+            } catch (\Exception $e) {
+                Log::warning('Échec envoi opportunité à ' . $utilisateur->email . ' : ' . $e->getMessage());
+            }
+        }
+
+        return back()->with('success', "Email envoyé à {$envoyes} utilisateur(s) du domaine \"{$domaineRecherche}\".");
     }
 }

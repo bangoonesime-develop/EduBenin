@@ -177,10 +177,6 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       Filières
     </a>
-    <a href="#" class="side-link">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg>
-      Bourses
-    </a>
 
     <span class="side-label">Communauté</span>
     <a href="#panel-utilisateurs" class="side-link">
@@ -190,6 +186,12 @@
     <a href="#" class="side-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15V4"/><path d="M4 4h11l2 3 5-1v9l-5-1-2 3H4"/></svg>
       Signalements
+    </a>
+
+    <span class="side-label">Communication</span>
+    <a href="#panel-opportunites" class="side-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+      Opportunités par email
     </a>
 
     <div class="side-bottom">
@@ -737,6 +739,46 @@
           @endforelse
         </tbody>
       </table>
+    </section>
+
+    <!-- =========================================================
+         PANNEAU : OPPORTUNITÉS PAR EMAIL
+         Envoie un email personnalisé aux utilisateurs dont le
+         domaine correspond à celui saisi. Volontairement pas
+         d'option "tous les inscrits", pour rester pertinent et
+         éviter le spam.
+    ========================================================= -->
+    <section class="panel" id="panel-opportunites">
+      <div class="panel-head">
+        <div>
+          <h2>Opportunités par email</h2>
+          <p>Envoie une annonce ciblée aux utilisateurs d'un domaine précis (ex. : une offre d'emploi, un événement, une bourse).</p>
+        </div>
+      </div>
+
+      <form method="POST" action="{{ route('admin.opportunites.send') }}">
+        @csrf
+        <div class="form-grid">
+          <div class="form-field">
+            <label>Domaine ciblé</label>
+            <input type="text" name="domaine" placeholder="Ex. : Informatique" value="{{ old('domaine') }}" required>
+          </div>
+          <div class="form-field">
+            <label>Objet de l'email</label>
+            <input type="text" name="objet" placeholder="Ex. : Nouvelle offre de stage en Informatique" value="{{ old('objet') }}" required>
+          </div>
+          <div class="form-field full">
+            <label>Message</label>
+            <textarea name="message" rows="6" placeholder="Rédige le message qui sera envoyé...">{{ old('message') }}</textarea>
+          </div>
+        </div>
+        <p style="font-size:12.5px; color:var(--ink-400); margin-top:-6px; margin-bottom:16px;">
+          Seuls les utilisateurs dont le domaine renseigné à l'inscription correspond (même partiellement, sans tenir compte de la casse) recevront ce message.
+        </p>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Envoyer aux inscrits concernés</button>
+        </div>
+      </form>
     </section>
 
   </main>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EduBénin — Apprendre, Évoluer, Réussir</title>
-<meta name="description" content="La plateforme tout-en-un pour les étudiants et jeunes du Bénin : cours en ligne, emplois, stages et bourses.">
+<meta name="description" content="La plateforme tout-en-un pour les étudiants et jeunes du Bénin : cours en ligne, emplois et stages.">
 
 <!-- Polices : Sora pour les titres (moderne, géométrique), Inter pour le texte courant -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -599,12 +599,12 @@
         <span class="eyebrow">Plateforme béninoise</span>
         <h1>
           La plateforme tout-en-un pour les
-          <span>étudiants</span>,
-          <span>jeunes</span> du Bénin et
-          <span>Non diplômé du supérieur</span>
+          <span class="accent-orange">étudiants</span>,
+          <span class="accent-blue">jeunes</span> du Bénin et
+          <span class="accent-violet">Non diplômé du supérieur</span>
         </h1>
         <p class="lead">
-          Cours, emplois, stages, bourses et bien plus. Tout ce qu'il te faut pour apprendre, évoluer et réussir, réuni au même endroit.
+          Cours, emplois, stages et bien plus. Tout ce qu'il te faut pour apprendre, évoluer et réussir, réuni au même endroit.
         </p>
 
         <form class="search-bar" onsubmit="return false;">
@@ -624,12 +624,6 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
             </span>
             <span><strong>{{ $totalEmplois }}+</strong><span>Offres d'emploi</span></span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg>
-            </span>
-            <span><strong>50+</strong><span>Bourses disponibles</span></span>
           </div>
           <div class="stat-item">
             <span class="stat-icon">
@@ -750,22 +744,23 @@
         <div>
           <h4>Plateforme</h4>
           <ul>
-            <li><a href="/Cours">Cours</a></li>
-            <li><a href="/emplois">Emplois &amp; Stages</a></li>
+            <li><a href="Cours.blade.php">Cours</a></li>
+            <li><a href="#">Emplois &amp; Stages</a></li>
           </ul>
         </div>
         <div>
           <h4>Ressources</h4>
           <ul>
-            <li><a href="/ressources">Guides</a></li>
-            <li><a href="/communauté">Communauté</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Guides</a></li>
+            <li><a href="#">Communauté</a></li>
           </ul>
         </div>
         <div>
           <h4>Compte</h4>
           <ul>
-            <li><a href="/Connexion">Se connecter</a></li>
-            <li><a href="/Inscription">S'inscrire</a></li>
+            <li><a href="#">Se connecter</a></li>
+            <li><a href="#">S'inscrire</a></li>
             <li><a href="#">Aide</a></li>
           </ul>
         </div>

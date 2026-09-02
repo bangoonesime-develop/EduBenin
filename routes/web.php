@@ -32,9 +32,6 @@ Route::post('/Connexion', [AuthController::class, 'login']);
 
 Route::post('/deconnexion', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/Bourses', function () {
-    return view('Bourse');
-});
 Route::get('/ressources', [RessourceController::class, 'index']);
 
 // Accès à une ressource : réservé aux membres connectés
@@ -79,6 +76,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::patch('/utilisateurs/{utilisateur}/role', [AdminController::class, 'toggleRoleUtilisateur'])->name('admin.utilisateurs.toggleRole');
     Route::delete('/utilisateurs/{utilisateur}', [AdminController::class, 'destroyUtilisateur'])->name('admin.utilisateurs.destroy');
+
+    Route::post('/opportunites/envoyer', [AdminController::class, 'sendOpportunite'])->name('admin.opportunites.send');
 
     Route::post('/series', [AdminController::class, 'storeSerie'])->name('admin.series.store');
     Route::get('/series/{serie}/edit', [AdminController::class, 'editSerie'])->name('admin.series.edit');
