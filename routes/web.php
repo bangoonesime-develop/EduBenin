@@ -7,6 +7,8 @@ use App\Http\Controllers\EmploiController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\RessourceController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RechercheController;
+use App\Http\Controllers\ProfilController;
 use App\Models\Filiere;
 
 Route::get('/', function () {
@@ -15,6 +17,8 @@ Route::get('/', function () {
 Route::get('/Acceuil', [HomeController::class, 'index']);
 
 Route::get('/Cours', [CoursController::class, 'index']);
+
+Route::get('/recherche', [RechercheController::class, 'index'])->name('recherche.index');
 
 // Page playlist d'une série de tutoriels vidéo
 Route::get('/serie/{serie}', [CoursController::class, 'serie'])->name('serie.show');
@@ -31,6 +35,13 @@ Route::get('/Connexion', function () {
 Route::post('/Connexion', [AuthController::class, 'login']);
 
 Route::post('/deconnexion', [AuthController::class, 'logout'])->name('logout');
+
+// Espace "Mon profil" — réservé aux membres connectés
+Route::middleware('auth')->group(function () {
+    Route::get('/mon-profil', [ProfilController::class, 'edit'])->name('profil.edit');
+    Route::put('/mon-profil', [ProfilController::class, 'update'])->name('profil.update');
+    Route::put('/mon-profil/mot-de-passe', [ProfilController::class, 'updatePassword'])->name('profil.password.update');
+});
 
 Route::get('/ressources', [RessourceController::class, 'index']);
 

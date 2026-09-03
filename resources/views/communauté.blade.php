@@ -69,6 +69,9 @@
   .user-menu-dropdown form{ margin:0; }
   .user-menu-dropdown button{ width:100%; text-align:left; padding:12px 16px; font-size:13.5px; font-weight:500; color:var(--ink-900); background:transparent; transition:background .15s ease; }
   .user-menu-dropdown button:hover{ background:var(--bg-soft); }
+  .user-menu-dropdown a{ display:block; width:100%; text-align:left; padding:12px 16px; font-size:13.5px; font-weight:500; color:var(--ink-900); transition:background .15s ease; }
+  .user-menu-dropdown a:hover{ background:var(--bg-soft); }
+  .user-menu-dropdown .dropdown-divider{ height:1px; background:var(--border); margin:4px 0; }
   .icon-btn{ width:38px; height:38px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:transparent; color:var(--ink-600); transition:background .15s ease; }
   .icon-btn:hover{ background:var(--bg-soft); }
   .btn{ font-size:14px; font-weight:600; padding:10px 18px; border-radius:999px; transition:transform .12s ease, box-shadow .12s ease, background .15s ease; display:inline-flex; align-items:center; gap:6px; }
@@ -232,6 +235,13 @@
               <span class="user-fullname">{{ Auth::user()->prenom }} {{ Auth::user()->nom }}</span>
             </button>
             <div class="user-menu-dropdown" id="userMenuDropdown">
+              <a href="{{ route('profil.edit') }}">
+                <span style="display:inline-flex; align-items:center; gap:8px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  Mon profil
+                </span>
+              </a>
+              <div class="dropdown-divider"></div>
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit">Se déconnecter</button>

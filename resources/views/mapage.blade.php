@@ -570,6 +570,12 @@
               <span class="user-fullname">{{ Auth::user()->prenom }} {{ Auth::user()->nom }}</span>
             </button>
             <div class="user-menu-dropdown" id="userMenuDropdown">
+              <a href="{{ route('profil.edit') }}">
+                <span style="display:inline-flex; align-items:center; gap:8px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  Mon profil
+                </span>
+              </a>
               @if(Auth::user()->role === 'admin')
                 <a href="{{ route('admin.dashboard') }}">
                   <span style="display:inline-flex; align-items:center; gap:8px;">
@@ -577,8 +583,8 @@
                     Tableau de bord
                   </span>
                 </a>
-                <div class="dropdown-divider"></div>
               @endif
+              <div class="dropdown-divider"></div>
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit">Se déconnecter</button>
@@ -607,8 +613,8 @@
           Cours, emplois, stages et bien plus. Tout ce qu'il te faut pour apprendre, évoluer et réussir, réuni au même endroit.
         </p>
 
-        <form class="search-bar" onsubmit="return false;">
-          <input type="text" placeholder="Que recherchez-vous ? (cours, emploi, bourse...)">
+        <form class="search-bar" action="{{ route('recherche.index') }}" method="GET">
+          <input type="text" name="q" placeholder="Que recherchez-vous ? (cours, emploi, ressource...)">
           <button type="submit">Rechercher</button>
         </form>
 
