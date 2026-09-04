@@ -1,6 +1,6 @@
 FROM php:8.2-apache
 
-# Installer les extensions PHP nécessaires à Laravel
+# Installer les dépendances système et les extensions PHP
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
+    libpq-dev \
     && docker-php-ext-install \
     pdo \
     pdo_mysql \
